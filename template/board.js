@@ -22,13 +22,14 @@ function onDragStart(source, piece, position, orientation) {
 }
 
 function onDrop(source, target) {
+
   // see if the move is legal
   let move = game.move({
     from: source,
     to: target,
     promotion: promotion(), // NOTE: always promote to a queen for example simplicity
   });
-
+  // try: using click to move
   // illegal move
   if (move === null) return "snapback";
   updateStatus();
@@ -85,6 +86,7 @@ let game_imfo = {
   player: "white",
   AI_player: "black",
 };
+
 function initboard(num) {
   if (num % 2) {
     game_imfo.player = "black";

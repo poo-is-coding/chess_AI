@@ -92,6 +92,14 @@ function chess_board_evaluate(version, board_situation) {
     let evnum = 0;
     let cc_step = 0;
     let cc_ind = 0;
+    let node = Chess(board_situation)
+    if (node.game_over()){
+      if (node.in_checkmate()){
+        if (node.turn() == 'b') return 99999
+        return -99999
+      }
+      return 0
+    }
     for (let i = 0; i < board_situation.length; i++) {
       if (board_situation[i] === " ") break;
       else if (board_situation[i] === "/") {
@@ -437,7 +445,7 @@ function chess_board_monte_carol(node, iterations=MCTS_select_num) {
 chess_AI_move = function (
   gamep,
   AI_chooserp=5,
-  minimax_alg_searching_limitp=3,
+  minimax_alg_searching_limitp=4,
   ev_func_versionp=2,
   MCTS_select_nump=500
 ) {
