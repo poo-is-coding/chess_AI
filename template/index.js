@@ -13,6 +13,7 @@ function init() {
         game.move(tempmove);
         board.position(game.fen());
         $("#turn span").html(turnInnerHTML);
+        hhmove = false
       }, 20);
     }
   });

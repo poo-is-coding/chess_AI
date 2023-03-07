@@ -4,9 +4,7 @@ const game = new Chess();
 var $status = $("#status");
 let $fen = $("#fen");
 let $pgn = $("#pgn");
-function promotion(){
-  return 'q';
-}
+let hhmove = false
 
 function onDragStart(source, piece, position, orientation) {
   // do not pick up pieces if the game is over
@@ -14,20 +12,20 @@ function onDragStart(source, piece, position, orientation) {
 
   // only pick up pieces for the side to move
   if (
-    (game.turn() === "w" && piece.search(/^b/) !== -1) ||
-    (game.turn() === "b" && piece.search(/^w/) !== -1)
+    (game.turn() === "w" && (piece.search(/^b/) !== -1 || hhmove)) ||
+    (game.turn() === "b" && (piece.search(/^w/) !== -1 || hhmove))
   ) {
     return false;
   }
 }
 
 function onDrop(source, target) {
-
+  
   // see if the move is legal
   let move = game.move({
     from: source,
     to: target,
-    promotion: promotion(), // NOTE: always promote to a queen for example simplicity
+    promotion: 'q', // NOTE: always promote to a queen for example simplicity
   });
   // try: using click to move
   // illegal move
@@ -39,6 +37,7 @@ function onDrop(source, target) {
 // for castling, en passant, pawn promotion
 function onSnapEnd() {
   board.position(game.fen());
+  hhmove = true
 }
 
 function updateStatus() {

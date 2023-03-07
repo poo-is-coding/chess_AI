@@ -1,5 +1,5 @@
 let chess_AI_move = null;
-let minimax_alg_searching_limit = 4;
+let minimax_alg_searching_limit = 1;
 let AI_chooser = 5;
 let ev_func_version = 2;
 let MCTS_select_num = 3000;
@@ -445,7 +445,7 @@ function chess_board_monte_carol(node, iterations=MCTS_select_num) {
 chess_AI_move = function (
   gamep,
   AI_chooserp=5,
-  minimax_alg_searching_limitp=4,
+  minimax_alg_searching_limitp=3,
   ev_func_versionp=2,
   MCTS_select_nump=500
 ) {
