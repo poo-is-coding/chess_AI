@@ -444,8 +444,8 @@ function chess_board_monte_carol(node, iterations=MCTS_select_num) {
 //回傳AI要走的棋
 chess_AI_move = function (
   gamep,
-  AI_chooserp=5,
-  minimax_alg_searching_limitp=3,
+  AI_chooserp=0,
+  minimax_alg_searching_limitp=1,
   ev_func_versionp=2,
   MCTS_select_nump=500
 ) {

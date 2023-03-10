@@ -5,6 +5,7 @@ var $status = $("#status");
 let $fen = $("#fen");
 let $pgn = $("#pgn");
 let hhmove = false
+let whendgame = false
 
 function onDragStart(source, piece, position, orientation) {
   // do not pick up pieces if the game is over
@@ -37,7 +38,16 @@ function onDrop(source, target) {
 // for castling, en passant, pawn promotion
 function onSnapEnd() {
   board.position(game.fen());
-  hhmove = true
+  if (game.in_checkmate()){
+    $("#turn span").text("Checkmate! You win.");
+    whendgame = true
+  }else if (game.game_over()){
+    $("#turn span").text("Tie")
+    whendgame = true
+  }else{
+    hhmove = true
+    $("#undo_btn span").text("Undo")
+  }
 }
 
 function updateStatus() {
@@ -97,6 +107,10 @@ function initboard(num) {
   config.orientation = game_imfo.player;
   board = Chessboard("myBoard", config);
   game.reset();
+  whendgame = false
+  hhmove = false
+  
+
   //需要換位子
   updateStatus();
   if (game_imfo.AI_player === "white") chess_AI_move(AI_chooser);
