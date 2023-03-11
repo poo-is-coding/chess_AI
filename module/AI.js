@@ -64,7 +64,7 @@ const piece_value_ev = {
     [0.5, 0.5, 1, 2.5, 2.5, 1, 0.5, 0.5],
     [0, 0, 0, 2.3, 2.3, 0, 0, 0],
     [0.5, -0.5, -1, 0, 0, -1, -0.5, 0.5],
-    [0.5, 1, 1, -2, -2, 1, 1, 0.5],
+    [0.5, 1, 1, -2.8, -2.8, 1, 1, 0.5],
     [0, 0, 0, 0, 0, 0, 0, 0],
   ],
 };
@@ -444,8 +444,8 @@ function chess_board_monte_carol(node, iterations=MCTS_select_num) {
 //回傳AI要走的棋
 chess_AI_move = function (
   gamep,
-  AI_chooserp=0,
-  minimax_alg_searching_limitp=1,
+  AI_chooserp=5,
+  minimax_alg_searching_limitp=3,
   ev_func_versionp=2,
   MCTS_select_nump=500
 ) {

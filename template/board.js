@@ -46,7 +46,9 @@ function onSnapEnd() {
     whendgame = true
   }else{
     hhmove = true
-    $("#undo_btn span").text("Undo")
+    $("#undo_btn span").css("color","rgb(241,28,29)")
+      $("#undo_btn span").css("text-shadow","0px 0px 2rem rgba(241,28,29,0.8),0px 0px 2.2rem rgba(241,28,29,0.5)")
+    $("#undo_btn span").text("Undo");
   }
 }
 
@@ -113,5 +115,4 @@ function initboard(num) {
 
   //需要換位子
   updateStatus();
-  if (game_imfo.AI_player === "white") chess_AI_move(AI_chooser);
 }
