@@ -307,8 +307,10 @@ function run_negascout(game) {
 class MCTS_node {
   constructor(bd_fen) {
     this.state = new Chess(bd_fen);
+
     this.children = [];
     this.parent = null;
+
     this.nn = 0;
     this.n = 0;
     this.w = 0;
@@ -323,7 +325,7 @@ function ucb1(node) {
       Math.sqrt(
         Math.log(node.nn + Math.exp(1) + Math.pow(10, -6)) /
           (node.n + Math.pow(10, -10))
-      )
+      )   
   );
 }
 
@@ -438,6 +440,7 @@ function chess_board_monte_carol(node, iterations=MCTS_select_num) {
   }
   return valid_move[max_index];
 }
+
 
 
 //實際執行移動的函式 gamep傳入當前盤面的fen，AIchooserp傳入選擇的AI演算法，minimax_alg_searching_limitp傳入計算的深度，ev_func_versionp傳入使用的評估函式版本，MCTS_select_nump傳入MCTS的次數

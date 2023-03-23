@@ -1,6 +1,13 @@
+:root{
+    --bd_scale: 0.9;
+}
+
+
+
 body {
     margin: 0;
     background-color: rgb(20, 20, 20);
+    height: 100%;
 }
 
 .bd>div>div>div:nth-child(odd)>div:nth-child(odd) {
@@ -53,16 +60,31 @@ body {
 
 .sec_1>.bd {
     flex: none;
-    width: 47%;
-    scale: 0.9;
+    width: 45%;
+    aspect-ratio: 1/1;
+    scale: var(
+        --bd_scale
+    );
 }
 
 .sec_1>.btn_nav {
     flex: none;
     width: 17%;
 }
+.sec_1>.ck_box_sel{
+    flex: none;
+    width: 17%;
+    height: 36rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.ck_box_sel>*{
+    width: 100%;
+    flex: none;
+}
 
 .btn_ck {
+    flex: none;
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     border: 1.5rem solid rgba(138, 188, 209, 1);
