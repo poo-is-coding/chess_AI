@@ -192,7 +192,7 @@ def MCTS_rollout(node,player,step):
                 return 1
             return -1
         return 0
-    elif step > 7:
+    elif step > 5:
         root_evaluate = chess_board_evaluate(Board.fen())*-1
         ev_evaluate = chess_board_evaluate(node.state.fen())*-1
         if ev_evaluate > root_evaluate: return 0.5
@@ -262,6 +262,6 @@ while (not Board.is_game_over()):
         kk = False
     else:
         root = root.children[ind]
-    outcome = MCTS(root,20000)
+    outcome = MCTS(root,10000)
     Board.push(outcome[0])
     root = root.children[outcome[1]]

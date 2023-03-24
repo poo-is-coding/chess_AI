@@ -3,9 +3,21 @@ let roundcc = 0;
 let AI_calcu_time = 0;
 
 const turnInnerHTML = `Player's turn<br/><span>click me</span>`;
+const add_option_to_select = (bd_fen)=>{
+  let state = new Chess(bd_fen)
+  let valid_moves = state.moves()
+  for (let i=0;i<valid_moves.length;i++){
+    let item = document.createElement("option")
+    item.id = 'option_item'
+    item.value = valid_moves[i]
+    item.innerText = valid_moves[i]
+    document.getElementById("select_list").appendChild(item)
+  }
+}
 
 function init() {
   initboard(cc);
+  add_option_to_select(game.fen())
   // 第三個按鈕(送出目前盤面 交由AI運算)
   $("#turn").on("click", () => {
     if (game.turn() == game_imfo.AI_player[0] && !whendgame) {
@@ -41,6 +53,7 @@ function init() {
         $(".btn_nav div").removeClass("btn_ck_thinking");
         $(".btn_nav div").addClass("btn_ck");
         $("#undo_btn span").html("Use " + AI_calcu_time + "s<br/>to move");
+        add_option_to_select(game.fen())
         hhmove = false;
       }, 20);
     }
@@ -50,6 +63,7 @@ function init() {
     if (hhmove) {
       game.undo();
       board.position(game.fen());
+      add_option_to_select(game.fen())
       hhmove = false;
       if (
         game.fen().slice(0, 43) ===
@@ -78,6 +92,7 @@ function init() {
   $("#reset_btn").on("click", () => {
     cc++;
     initboard(cc);
+    $("#select_list>#option_item").remove()
     if (game_imfo.AI_player === "white") {
       hhmove = true;
       $("#turn span").text("AI's turn");
@@ -98,7 +113,8 @@ function init() {
         AI_calcu_time = Math.round(AI_calcu_time / 10) / 100;
         //移動
         game.move(tempmove);
-        board.position(game.fen()); //渲染盤面
+        board.position(game.fen());
+        add_option_to_select(game.fen()) //渲染盤面
         $("#turn span").html(turnInnerHTML);
         $(".btn_nav div").removeClass("btn_ck_thinking");
         $(".btn_nav div").addClass("btn_ck");
@@ -112,7 +128,28 @@ function init() {
         "0px 0px 2rem rgba(208,223,230,0.8),0px 0px 2.2rem rgba(208,223,230,0.5)"
       );
       $("#undo_btn span").text("Game Start");
+      add_option_to_select(game.fen())
     }
   });
+  //選單
+  $("#select_list").on("change",()=>{
+    let sel_move = $("#select_list option:selected").val()
+    if (sel_move.length === 0) return
+    game.move(sel_move)
+    board.position(game.fen());
+    $("#select_list>#option_item").remove()
+    if (game.in_checkmate()){
+      $("#turn span").text("Checkmate! You win.");
+      whendgame = true
+    }else if (game.game_over()){
+      $("#turn span").text("Tie")
+      whendgame = true
+    }else{
+      hhmove = true
+      $("#undo_btn span").css("color","rgb(241,28,29)")
+        $("#undo_btn span").css("text-shadow","0px 0px 2rem rgba(241,28,29,0.8),0px 0px 2.2rem rgba(241,28,29,0.5)")
+      $("#undo_btn span").text("Undo");
+    }
+});
   return 0;
 }

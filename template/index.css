@@ -74,13 +74,37 @@ body {
 .sec_1>.ck_box_sel{
     flex: none;
     width: 17%;
-    height: 36rem;
+    height: 40rem;
     display: flex;
     flex-wrap: wrap;
 }
 .ck_box_sel>*{
     width: 100%;
     flex: none;
+    display: flex;
+    align-items: center;
+    margin-left: 5%;
+}
+.ck_box_sel>*>*{
+    flex:none;
+}
+.ck_box_sel span{
+    display: block;
+    color: white;
+    font-size: large;
+    font-weight: bold;
+    width: 80%;
+
+}
+.ck_box_sel input{
+
+    width: 10%;
+    aspect-ratio: 1/1;
+}
+
+.sellist{
+    width: 80%;
+    margin-right: auto;margin-left: auto;
 }
 
 .btn_ck {

@@ -38,6 +38,7 @@ function onDrop(source, target) {
 // for castling, en passant, pawn promotion
 function onSnapEnd() {
   board.position(game.fen());
+  $("#select_list>#option_item").remove()
   if (game.in_checkmate()){
     $("#turn span").text("Checkmate! You win.");
     whendgame = true
