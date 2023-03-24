@@ -144,9 +144,9 @@ class MCTS_node:
         self.w = 0
 
 def ucb1(node):
-    return node.w / (node.n + 10 ** -10) + ( 2 * math.log(node.nn+math.exp(1)+10**-6) / (node.n+10**-10) ) ** 0.5 
+    return node.w / (node.n + 10 ** -10) + ( 1.8 * math.log(node.nn+math.exp(1)+10**-6) / (node.n+10**-10) ) ** 0.5 
 
-def MCTS_expand(node,gonnawin):
+def MCTS_select(node,gonnawin):
     if not len(node.children): return node
     if gonnawin:
         max_ucb = -math.inf
@@ -156,7 +156,7 @@ def MCTS_expand(node,gonnawin):
             if curr_ucb > max_ucb:
                 max_ucb = curr_ucb
                 max_ucb_child = chnode
-        return MCTS_expand(max_ucb_child,not gonnawin)
+        return MCTS_select(max_ucb_child,not gonnawin)
     else:
         min_ucb = math.inf
         min_ucb_child = None
@@ -165,31 +165,44 @@ def MCTS_expand(node,gonnawin):
             if curr_ucb < min_ucb:
                 min_ucb = curr_ucb
                 min_ucb_child = chnode
-        return MCTS_expand(min_ucb_child,not gonnawin)
+        return MCTS_select(min_ucb_child,not gonnawin)
 
-def MCTS_rollout(node,player,step):
+def MCTS_expand(node,player):
     if node.state.is_game_over():
         if node.state.is_checkmate():
             if node.state.turn == player:
                 return ( 1, node )
             return ( -1, node )
         return ( 0, node )
-    elif step > 5:
+
+    legal_move = list(node.state.legal_moves)
+    for mv in legal_move:
+        node.state.push(mv)
+        child = MCTS_node(node.state.fen())
+        child.parent = node
+        node.children.append(child)
+        node.state.pop()
+    random_child = node.children[random.randint( 0, len(node.children)-1)]
+    return ( 2, random_child )
+
+def MCTS_rollout(node,player,step):
+    if node.state.is_game_over():
+        if node.state.is_checkmate():
+            if node.state.turn == player:
+                return 1
+            return -1
+        return 0
+    elif step > 7:
         root_evaluate = chess_board_evaluate(Board.fen())*-1
         ev_evaluate = chess_board_evaluate(node.state.fen())*-1
-        if ev_evaluate > root_evaluate: return (0.5,node)
-        elif ev_evaluate < root_evaluate: return (-0.5,node)
-        else: return ( 0, node )
-    if not len(node.children):
-        legal_move = list(node.state.legal_moves)
-        for mv in legal_move:
-            node.state.push(mv)
-            child = MCTS_node(node.state.fen())
-            child.parent = node
-            node.children.append(child)
-            node.state.pop()
-    random_child = node.children[random.randint( 0, len(node.children)-1)]
-    return MCTS_rollout( random_child, player,step+1)
+        if ev_evaluate > root_evaluate: return 0.5
+        elif ev_evaluate < root_evaluate: return -0.5
+        else: return 0
+    legal_move = list(node.state.legal_moves)
+    node.state.push(legal_move[random.randint( 0, len(legal_move)-1)])
+    ans = MCTS_rollout(node, player,step+1)
+    node.state.pop()
+    return ans
 
 def MCTS_rollup(node,rwd):
     while node.parent != None:
@@ -211,18 +224,15 @@ def MCTS(root,iterations=2000):
             root.children.append(child)
             root.state.pop()
     while iterations > 0:
-        max_ucb = -math.inf
-        max_ucb_child = None
-        for chnode in root.children:
-            curr_ucb = ucb1(chnode)
-            if curr_ucb > max_ucb:
-                max_ucb = curr_ucb
-                max_ucb_child = chnode
-
-        expand_child = MCTS_expand(max_ucb_child,False)
-        rollout_outcome = MCTS_rollout(expand_child,True,0)
-        MCTS_rollup(rollout_outcome[1],rollout_outcome[0])
+        select_child = MCTS_select(root,True)
+        expand_outcome = MCTS_expand(select_child,True)
+        if expand_outcome[0] == 2: 
+            rollout_outcome = MCTS_rollout(expand_outcome[1],True,0)
+            MCTS_rollup(expand_outcome[1],rollout_outcome)
+        else:
+            MCTS_rollup(expand_outcome[1],expand_outcome[0])
         iterations -= 1
+        print(iterations)
 
     max_ucb = -math.inf
     max_ind = -1
@@ -252,6 +262,6 @@ while (not Board.is_game_over()):
         kk = False
     else:
         root = root.children[ind]
-    outcome = MCTS(root,500)
+    outcome = MCTS(root,20000)
     Board.push(outcome[0])
     root = root.children[outcome[1]]
