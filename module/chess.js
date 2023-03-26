@@ -1372,8 +1372,26 @@ const Chess = function (fen) {
           )
         }
       }
-
-      return moves
+      let sort_valid_moves = []
+      for (let ind = 0; ind < moves.length; ind++){
+        if (moves[ind].includes('#')){
+          sort_valid_moves.push(moves[ind])
+        }
+      }
+      for (let ind = 0; ind < moves.length; ind++){
+        if (moves[ind].includes('+')){
+          sort_valid_moves.push(moves[ind])
+        }
+      }
+      for (let ind = 0; ind < moves.length; ind++){
+        if (moves[ind].includes('x')){
+          sort_valid_moves.push(moves[ind])
+        }
+      }
+      for (let ind = 0; ind < moves.length; ind++){
+        sort_valid_moves.push(moves[ind])
+      }
+      return sort_valid_moves
     },
 
     in_check: function () {
