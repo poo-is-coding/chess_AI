@@ -26,3 +26,6 @@ a website about chess_AI
 ## 3/24 改善python版MCTS程式 UI優化 第三彈
 將python版MCTS改寫，使儲存空間消耗減少，進而微微優化效率。
 新增走棋選擇器做為替代方案解決手機版無法透過拖曳走棋的問題
+
+## 3/26 RWD
+完成RWD響應式網頁設計
