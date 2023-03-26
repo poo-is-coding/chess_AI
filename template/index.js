@@ -14,9 +14,14 @@ const add_option_to_select = (bd_fen)=>{
     document.getElementById("select_list").appendChild(item)
   }
 }
+const init_AI_selector = () => {
+  $("#ck_box_sel input:radio").prop("checked",false)
+  $("#ck_box_sel #default_opt").prop("checked",true)
+}
 
 function init() {
   initboard(cc);
+  init_AI_selector()
   add_option_to_select(game.fen())
   // 第三個按鈕(送出目前盤面 交由AI運算)
   $("#turn").on("click", () => {
@@ -30,10 +35,16 @@ function init() {
       $("#undo_btn span").text("Thinking...");
       $(".btn_nav div").removeClass("btn_ck");
       $(".btn_nav div").addClass("btn_ck_thinking");
+      let AI_choose = document.getElementsByName("sel")
+      if (AI_choose[1].checked){
+        AI_choose = [4,6]
+      }else{
+        AI_choose = [5,4]
+      }
       window.setTimeout(() => {
         // AI 運算耗時
         let time1 = new Date().getTime();
-        let tempmove = chess_AI_move(game.fen()); //AI運算函式，回傳AI要移動的步
+        let tempmove = chess_AI_move(game.fen(),AI_chooserp=AI_choose[0],minimax_alg_searching_limitp=AI_choose[1]); //AI運算函式，回傳AI要移動的步
         let time2 = new Date().getTime();
         AI_calcu_time = time2 - time1;
         AI_calcu_time = Math.round(AI_calcu_time / 10) / 100;
@@ -55,6 +66,7 @@ function init() {
         $("#undo_btn span").html("Use " + AI_calcu_time + "s<br/>to move");
         add_option_to_select(game.fen())
         hhmove = false;
+        init_AI_selector();
       }, 20);
     }
   });
@@ -92,6 +104,7 @@ function init() {
   $("#reset_btn").on("click", () => {
     cc++;
     initboard(cc);
+    init_AI_selector()
     $("#select_list>#option_item").remove()
     if (game_imfo.AI_player === "white") {
       hhmove = true;
@@ -104,10 +117,16 @@ function init() {
       $("#undo_btn span").text("Thinking...");
       $(".btn_nav div").removeClass("btn_ck");
       $(".btn_nav div").addClass("btn_ck_thinking");
+      let AI_choose = document.getElementsByName("sel")
+      if (AI_choose[1].checked){
+        AI_choose = [4,6]
+      }else{
+        AI_choose = [5,4]
+      }
       window.setTimeout(() => {
         // AI 運算耗時
         let time1 = new Date().getTime();
-        let tempmove = chess_AI_move(game.fen()); //AI運算函式，回傳AI要移動的步
+        let tempmove = chess_AI_move(game.fen(),AI_chooserp=AI_choose[0],minimax_alg_searching_limitp=AI_choose[1]); //AI運算函式，回傳AI要移動的步
         let time2 = new Date().getTime();
         AI_calcu_time = time2 - time1;
         AI_calcu_time = Math.round(AI_calcu_time / 10) / 100;
@@ -116,8 +135,8 @@ function init() {
         board.position(game.fen());
         add_option_to_select(game.fen()) //渲染盤面
         $("#turn span").html(turnInnerHTML);
-        $(".btn_nav div").removeClass("btn_ck_thinking");
-        $(".btn_nav div").addClass("btn_ck");
+        $("#btn_nav div").removeClass("btn_ck_thinking");
+        $("#btn_nav div").addClass("btn_ck");
         $("#undo_btn span").html("Use " + AI_calcu_time + "s<br/>to move");
         hhmove = false;
       }, 20);
