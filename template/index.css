@@ -1,8 +1,3 @@
-:root{
-    --bd_scale: 0.9;
-}
-
-
 
 body {
     margin: 0;
@@ -45,160 +40,459 @@ body {
 .bd>div>div>div:nth-child(odd)>div:nth-child(even)>div {
     color: rgb(34, 64, 106);
 }
+@media (min-width: 576px) and (max-width: 767.98px){
+    .sec_1{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .sec_1>.bd{
+        flex: none;
+        width: 90%;
+        margin: 5%;
+    }
+    .sec_1>.btn_nav{
+        flex:none;
+        width: 90%;
+        margin-left: 5%;margin-right: 5%;
+        display: flex;
+    }
+    .sec_1>.ck_box_sel{
+        flex: none;
+        width: 90%;
+        margin-right: 5%;margin-left: 5%;
+        display: flex;
+    }
+    .ck_box_sel>*{
+        width: calc(100%/3);
+        flex: none;
+        display: flex;
+        align-items: center;
+    }
+    .ck_box_sel>*>*{
+        flex: none;
+    }
+    .ck_box_sel span{
+        display: block;
+        color: rgb(208, 223, 230);
+        font-size: 1em;
+        font-weight: bold;
+        width: 90%;
+        text-align: center;
+    }
+    .ck_box_sel input{
+        width: 10%;
+        aspect-ratio: 1/1;
+    }
+    .sellist{
+        width: 80%;
+        margin-right: auto;margin-left: auto;
+        padding: 0.1em;
+        font-size: 0.9em;
+        border-radius: 1em;
+        color: rgb(208, 223, 230);
+        background-color: transparent;
+        border-color:rgb(208, 223, 230);
+    }
+    .sellist > option{
+        background-color: rgb(20, 20, 20);
+        color: rgb(208, 223, 230);
+    }
+    .btn_ck{
+        width: calc(85%/3);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: 1.3em solid rgba(138, 188, 209, 1);
+        box-shadow: 0px 0px 2em rgba(138, 188, 209, 0.8),
+            0px 0px 4em rgba(138, 188, 209, 0.5);
+        margin:2.5%;
+        margin-top: 0%;
+        color: rgb(208, 223, 230);
+        text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
+            0px 0px 2.2rem rgba(208, 223, 230, 0.5);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .btn_ck_thinking{
+        width: calc(85%/3);
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: 1.3em solid rgba(204, 129, 125, 1);
+        box-shadow: 0px 0px 2em rgba(204, 129, 125, 0.8),
+            0px 0px 4em rgba(204, 129, 125, 0.5);
+        margin:2.5%;
+        margin-top: 0%;
+        color: rgb(208, 223, 230);
+        text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
+            0px 0px 2.2rem rgba(208, 223, 230, 0.5);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .btn_ck > span{
+        font-size: 1em;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+    }
+    .btn_ck>span>span{
+        font-size: 0.4em;
+        text-align: center;
+        width: 100%;
+        margin-left: 5%;
+        animation:  floating 3s linear infinite;
+    }
+    .btn_ck_thinking > span{
+        font-size: 1em;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
+    }
+    .btn_ck_thinking>span>span{
+        font-size: 0.4em;
+        text-align: center;
+        width: 100%;
+        margin-left: 5%;
+        animation:  floating 3s linear infinite;
+    }
+    @keyframes floating {
+        0%{
+            margin-left: 5%;
+        }
+        25%{
+            margin-left: 0%;
+        }
+        50%{
+            margin-left: -5%;
+        }
+        75%{
+            margin-left: 0%;
+        }
+        100%{
+            margin-left: 5%;
+        }
+    }
+    .btn_ck:hover{
+        transition: 0.1s;
+        background-color: rgb(20, 35, 32);
+        cursor: pointer;
+        border: 1.1em solid rgba(138, 188, 209, 1);
+    }
+    .btn_ck_thinking:hover{
+        background-color: transparent;
+        border: 1.1em solid rgba(204, 129, 125, 1);
+    }
+}
+@media (min-width:768px) and (max-width: 1199.98px) {
+    .sec_1{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .sec_1>.bd{
+        flex: none;
+        width: 60%;
+        margin: 5%;
+        margin-bottom: 2.5%;
+    }
+    .sec_1>.btn_nav{
+        flex: none;
+        width: 20%;
+        margin: 5%;
+        margin-left: 0;
+        margin-bottom: 2.5%;
+    }
+    .sec_1>.ck_box_sel{
+        flex: none;
+        width: 90%;
+        margin-right: 5%;margin-left: 5%;
+        display: flex;
+    }
+    .ck_box_sel>*{
+        width: calc(100%/3);
+        flex: none;
+        display: flex;
+        align-items: center;
+    }
+    .ck_box_sel>*>*{
+        flex: none;
+    }
+    .ck_box_sel span{
+        display: block;
+        color: rgb(208, 223, 230);
+        font-size: 1.2em;
+        font-weight: bold;
+        width: 80%;
+        text-align: center;
+    }
+    .ck_box_sel input{
+        width: 10%;
+        aspect-ratio: 1/1;
+    }
 
-.sec_1 {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+    .sellist{
+        width: 80%;
+        margin-right: auto;margin-left: auto;
+        padding: 0.1em;
+        font-size: 0.9em;
+        border-radius: 1em;
+        color: rgb(208, 223, 230);
+        background-color: transparent;
+        border-color:rgb(208, 223, 230);
+    }
+    .sellist > option{
+        background-color: rgb(20, 20, 20);
+        color: rgb(208, 223, 230);
+    }
+    .btn_ck{
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: 1.5em solid rgba(138, 188, 209, 1);
+        box-shadow: 0px 0px 3em rgba(138, 188, 209, 0.8),
+            0px 0px 5em rgba(138, 188, 209, 0.5);
+        margin-top: 5%;margin-bottom: 5%;
+        color: rgb(208, 223, 230);
+        text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
+            0px 0px 2.2rem rgba(208, 223, 230, 0.5);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .btn_ck_thinking{
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        border: 1.5em solid rgba(204, 129, 125, 1);
+        box-shadow: 0px 0px 3em rgba(204, 129, 125, 0.8),
+            0px 0px 5em rgba(204, 129, 125, 0.5);
+        margin-top: 5%;margin-bottom: 5%;
+        color: rgb(208, 223, 230);
+        text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
+            0px 0px 2.2rem rgba(208, 223, 230, 0.5);
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .btn_ck > span{
+        font-size: 1.4em;
+        width: 100%;
+        text-align: center;
+    }
+    .btn_ck>span>span{
+        font-size: 0.5em;
+        text-align: center;
+        width: 100%;
+        margin-left: 5%;
+        animation:  floating 3s linear infinite;
+    }
+    .btn_ck_thinking > span{
+        font-size: 1.4em;
+        width: 100%;
+        text-align: center;
+    }
+    .btn_ck_thinking>span>span{
+        font-size: 0.5em;
+        text-align: center;
+        width: 100%;
+        margin-left: 5%;
+        animation:  floating 3s linear infinite;
+    }
+    @keyframes floating {
+        0%{
+            margin-left: 5%;
+        }
+        25%{
+            margin-left: 0%;
+        }
+        50%{
+            margin-left: -5%;
+        }
+        75%{
+            margin-left: 0%;
+        }
+        100%{
+            margin-left: 5%;
+        }
+    }
+    .btn_ck:hover{
+        transition: 0.1s;
+        background-color: rgb(20, 35, 32);
+        cursor: pointer;
+        border: 1.3em solid rgba(138, 188, 209, 1);
+    }
+    .btn_ck_thinking:hover{
+        background-color: transparent;
+        border: 1.3em solid rgba(204, 129, 125, 1);
+    }
 }
-
-.sec_1>.fill {
-    flex: none;
-    width: 5%;
-}
-
-.sec_1>.bd {
-    flex: none;
-    width: 45%;
-    aspect-ratio: 1/1;
-    scale: var(
-        --bd_scale
-    );
-}
-
-.sec_1>.btn_nav {
-    flex: none;
-    width: 17%;
-}
-.sec_1>.ck_box_sel{
-    flex: none;
-    width: 17%;
-    height: 40rem;
-    display: flex;
-    flex-wrap: wrap;
-}
-.ck_box_sel>*{
-    width: 100%;
-    flex: none;
-    display: flex;
-    align-items: center;
-    margin-left: 5%;
-}
-.ck_box_sel>*>*{
-    flex:none;
-}
-.ck_box_sel span{
-    display: block;
-    color: white;
-    font-size: large;
-    font-weight: bold;
-    width: 80%;
-
-}
-.ck_box_sel input{
-
-    width: 10%;
-    aspect-ratio: 1/1;
-}
-
-.sellist{
-    width: 80%;
-    margin-right: auto;margin-left: auto;
-}
-
-.btn_ck {
-    flex: none;
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    border: 1.5rem solid rgba(138, 188, 209, 1);
-    box-shadow: 0px 0px 3rem rgba(138, 188, 209, 0.8),
-        0px 0px 5rem rgba(138, 188, 209, 0.5);
-    background-color: transparent;
-    margin: 8%;
-    color: rgb(208, 223, 230);
-    text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
-        0px 0px 2.2rem rgba(208, 223, 230, 0.5);
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    text-align: center;
-
-}
-
-.btn_ck_thinking {
-    aspect-ratio: 1 / 1;
-    border-radius: 50%;
-    border: 1.5rem solid rgba(204, 129, 125, 1);
-    box-shadow: 0px 0px 3rem rgba(204, 129, 125, 0.8),
-        0px 0px 5rem rgba(204, 129, 125, 0.5);
-    background-color: transparent;
-    margin: 8%;
-    color: rgb(208, 223, 230);
-    text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
-        0px 0px 2.2rem rgba(208, 223, 230, 0.5);
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-
-.btn_ck>span {
-    width: 100%;
-    text-align: center;
-}
-
-.btn_ck>span>span {
-    font-size: 0.9rem;
-    text-align: center;
-    width: 100%;
-    margin-left: 5%;
-    animation: floating 3s linear infinite;
-}
-
-.btn_ck_thinking>span {
-    width: 100%;
-    text-align: center;
-}
-
-.btn_ck_thinking>span>span {
-    font-size: 0.9rem;
-    text-align: center;
-    width: 100%;
-    margin-left: 5%;
-    animation: floating 3s linear infinite;
-}
-
-@keyframes floating {
-    0% {
+@media(min-width:1200px){
+    .sec_1 {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    
+    .sec_1>.fill {
+        flex: none;
+        width: 5%;
+    }
+    
+    .sec_1>.bd {
+        flex: none;
+        width: 45%;
+        aspect-ratio: 1/1;
+        scale: 0.9;
+    }
+    
+    .sec_1>.btn_nav {
+        flex: none;
+        width: 17%;
+    }
+    .sec_1>.ck_box_sel{
+        flex: none;
+        width: 17%;
+        height: 40rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .ck_box_sel>*{
+        width: 100%;
+        flex: none;
+        display: flex;
+        align-items: center;
         margin-left: 5%;
     }
-
-    25% {
-        margin-left: 0%;
+    .ck_box_sel>*>*{
+        flex:none;
     }
-
-    50% {
-        margin-left: -5%;
+    .ck_box_sel span{
+        display: block;
+        color: rgb(208, 223, 230);
+        font-size: large;
+        font-weight: bold;
+        width: 80%;
     }
-
-    75% {
-        margin-left: 0%;
+    .ck_box_sel input{
+    
+        width: 10%;
+        aspect-ratio: 1/1;
+        background-color: aqua;
     }
-
-    100% {
+    .sellist{
+        width: 80%;
+        margin-right: auto;margin-left: auto;
+        padding: 0.1em;
+        font-size: 0.9em;
+        border-radius: 1em;
+        color: rgb(208, 223, 230);
+        background-color: transparent;
+        border-color:rgb(208, 223, 230);
+    }
+    .sellist > option{
+        background-color: rgb(20, 20, 20);
+        color: rgb(208, 223, 230);
+    }
+    
+    .btn_ck {
+        flex: none;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        border: 1.5rem solid rgba(138, 188, 209, 1);
+        box-shadow: 0px 0px 3rem rgba(138, 188, 209, 0.8),
+            0px 0px 5rem rgba(138, 188, 209, 0.5);
+        background-color: transparent;
+        margin: 8%;
+        color: rgb(208, 223, 230);
+        text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
+            0px 0px 2.2rem rgba(208, 223, 230, 0.5);
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    
+    }
+    
+    .btn_ck_thinking {
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        border: 1.5rem solid rgba(204, 129, 125, 1);
+        box-shadow: 0px 0px 3rem rgba(204, 129, 125, 0.8),
+            0px 0px 5rem rgba(204, 129, 125, 0.5);
+        background-color: transparent;
+        margin: 8%;
+        color: rgb(208, 223, 230);
+        text-shadow: 0px 0px 2rem rgba(208, 223, 230, 0.8),
+            0px 0px 2.2rem rgba(208, 223, 230, 0.5);
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .btn_ck>span {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .btn_ck>span>span {
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
         margin-left: 5%;
+        animation: floating 3s linear infinite;
     }
-}
-
-.btn_ck:hover {
-    transition: 0.1s;
-    background-color: rgb(20, 35, 32);
-    cursor: pointer;
-    border: 1.3rem solid rgba(138, 188, 209, 1);
-}
-
-.btn_ck_thinking:hover {
-    background-color: transparent;
-    border: 1.3rem solid rgba(204, 129, 125, 1);
+    
+    .btn_ck_thinking>span {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .btn_ck_thinking>span>span {
+        font-size: 0.9rem;
+        text-align: center;
+        width: 100%;
+        margin-left: 5%;
+        animation: floating 3s linear infinite;
+    }
+    
+    @keyframes floating {
+        0% {
+            margin-left: 5%;
+        }
+    
+        25% {
+            margin-left: 0%;
+        }
+    
+        50% {
+            margin-left: -5%;
+        }
+    
+        75% {
+            margin-left: 0%;
+        }
+    
+        100% {
+            margin-left: 5%;
+        }
+    }
+    
+    .btn_ck:hover {
+        transition: 0.1s;
+        background-color: rgb(20, 35, 32);
+        cursor: pointer;
+        border: 1.3rem solid rgba(138, 188, 209, 1);
+    }
+    
+    .btn_ck_thinking:hover {
+        background-color: transparent;
+        border: 1.3rem solid rgba(204, 129, 125, 1);
+    }
 }
