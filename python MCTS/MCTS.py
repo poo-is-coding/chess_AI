@@ -144,7 +144,7 @@ class MCTS_node:
         self.w = 0
 
 def ucb1(node):
-    return node.w / (node.n + 10 ** -10) + ( 1.8 * math.log(node.nn+math.exp(1)+10**-6) / (node.n+10**-10) ) ** 0.5 
+    return node.w / (node.n + 10 ** -10) + ( 2 * math.log(node.nn+math.exp(1)+10**-6) / (node.n+10**-10) ) ** 0.5 
 
 def MCTS_select(node,gonnawin):
     if not len(node.children): return node
