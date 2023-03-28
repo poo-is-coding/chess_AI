@@ -167,7 +167,7 @@ function chess_board_evaluate(version, board_situation) {
 // 最陽春的AI演算法 參數game傳入當下盤面的chess物件，depth傳入目前深度(預設為0)
 // 回傳AI要走的棋
 function chess_board_minimax_evaluate(game, depth = 0) {
-  if (depth === minimax_alg_searching_limit) {
+  if (depth === minimax_alg_searching_limit || game.game_over()) {
     if (game.turn() == "b")
       return -chess_board_evaluate(ev_func_version, game.fen());
     return chess_board_evaluate(ev_func_version, game.fen());
@@ -203,7 +203,7 @@ function chess_board_minimax_evaluate_alpha_beta(
   alpha,
   beta
 ) {
-  if (depth === minimax_alg_searching_limit) {
+  if (depth === minimax_alg_searching_limit || game.game_over()) {
     if (game_imfo.AI_player === "black")
       return -chess_board_evaluate(ev_func_version, game.fen());
     else return chess_board_evaluate(ev_func_version, game.fen());
@@ -259,11 +259,12 @@ function chess_board_minimax_evaluate_alpha_beta(
 // negascout 剪枝版本 與陽春版參數設定相同，加入alpha值與beta值
 // 回傳計算數值(以run_negascout函式運算回傳AI要走的棋)
 function chess_board_negascout(game, depth, alpha, beta) {
-  if (depth === minimax_alg_searching_limit) {
-    if (game.turn() == "b")
+  if (depth === minimax_alg_searching_limit || game.game_over()) {
+    if (game_imfo.AI_player === "black")
       return -chess_board_evaluate(ev_func_version, game.fen());
     return chess_board_evaluate(ev_func_version, game.fen());
   }
+
   let valid_move = game.moves();
   //ori means if the section is maximiser or not
   let mmValue = -Infinity;
