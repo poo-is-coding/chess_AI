@@ -37,7 +37,7 @@ function init() {
       $(".btn_nav div").addClass("btn_ck_thinking");
       let AI_choose = document.getElementsByName("sel");
       if (AI_choose[1].checked) {
-        AI_choose = [4, 6];
+        AI_choose = [4, 4];
       } else {
         AI_choose = [5, 4];
       }
