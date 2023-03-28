@@ -260,7 +260,7 @@ function chess_board_minimax_evaluate_alpha_beta(
 // 回傳計算數值(以run_negascout函式運算回傳AI要走的棋)
 function chess_board_negascout(game, depth, alpha, beta) {
   if (depth === minimax_alg_searching_limit || game.game_over()) {
-    if (game.turn() == "b")
+    if (game_imfo.AI_player === "black")
       return -chess_board_evaluate(ev_func_version, game.fen());
     return chess_board_evaluate(ev_func_version, game.fen());
   }
