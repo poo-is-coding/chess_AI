@@ -1,3 +1,4 @@
+// 兩函式庫互動 邏輯計算&盤面輸出
 let board = null;
 
 const game = new Chess();
