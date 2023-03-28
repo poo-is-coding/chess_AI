@@ -29,3 +29,6 @@ a website about chess_AI
 
 ## 3/26 RWD
 完成RWD響應式網頁設計
+
+## 3/28 下方說明欄
+完成說明欄動畫與基礎架構
