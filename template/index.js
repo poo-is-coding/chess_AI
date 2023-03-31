@@ -19,7 +19,7 @@ const init_AI_selector = () => {
 };
 
 function init() {
-  initboard(cc);
+  initboard(cc);+
   init_AI_selector();
   add_option_to_select(game.fen());
   // 第三個按鈕(送出目前盤面 交由AI運算)

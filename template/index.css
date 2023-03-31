@@ -5,6 +5,8 @@ body {
     height: 100%;
 }
 
+/*更改棋盤色*/ 
+
 .bd>div>div>div:nth-child(odd)>div:nth-child(odd) {
     background-color: rgb(34, 64, 106);
 }
@@ -40,6 +42,7 @@ body {
 .bd>div>div>div:nth-child(odd)>div:nth-child(even)>div {
     color: rgb(34, 64, 106);
 }
+
 @media (min-width: 576px) and (max-width: 767.98px){
     .sec_1{
         width: 100%;
@@ -186,6 +189,7 @@ body {
         border: 1.1em solid rgba(204, 129, 125, 1);
     }
 }
+/*筆電、平板尺寸*/
 @media (min-width:768px) and (max-width: 1199.98px) {
     .sec_1{
         width: 100%;
@@ -496,3 +500,42 @@ body {
         border: 1.3rem solid rgba(204, 129, 125, 1);
     }
 }
+
+*{
+    margin: 0;
+    padding: 0;
+  }
+  .container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+  }
+  .div{
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.2);
+    height: 300px;
+    width: 1200px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    background: linear-gradient(to right, #1cd8d2, #93edc7);
+    color: white;
+    margin: 100px 0;
+    border-radius: 7px;
+  }
+  .banner_context{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+
+  .highlight{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+  }
