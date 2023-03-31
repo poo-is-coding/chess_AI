@@ -1389,6 +1389,7 @@ const Chess = function (fen) {
         }
       }
       for (let ind = 0; ind < moves.length; ind++){
+        if (!(moves[ind].includes('#') || moves[ind].includes('+') || moves[ind].includes('x')))
         sort_valid_moves.push(moves[ind])
       }
       return sort_valid_moves

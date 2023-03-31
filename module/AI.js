@@ -95,7 +95,7 @@ function chess_board_evaluate(version, board_situation) {
     let node = Chess(board_situation)
     if (node.game_over()){
       if (node.in_checkmate()){
-        if (node.turn() == 'b') return 99999
+        if (node.turn() === 'b') return 99999
         return -99999
       }
       return 0
@@ -259,8 +259,8 @@ function chess_board_minimax_evaluate_alpha_beta(
 // negascout 剪枝版本 與陽春版參數設定相同，加入alpha值與beta值
 // 回傳計算數值(以run_negascout函式運算回傳AI要走的棋)
 function chess_board_negascout(game, depth, alpha, beta) {
-  if (depth === minimax_alg_searching_limit || game.game_over()) {
-    if (game_imfo.AI_player === "black")
+  if (depth === 0 || game.game_over()) {
+    if (game.turn() === 'b')
       return -chess_board_evaluate(ev_func_version, game.fen());
     return chess_board_evaluate(ev_func_version, game.fen());
   }
@@ -271,13 +271,13 @@ function chess_board_negascout(game, depth, alpha, beta) {
   let mmn = beta;
   for (let jnd = 0; jnd < valid_move.length; jnd++) {
     game.move(valid_move[jnd]);
-    let calcu_temp = -chess_board_negascout(game, depth + 1, -mmn, -alpha);
+    let calcu_temp = -chess_board_negascout(game, depth - 1, -mmn, -alpha);
 
     if (calcu_temp > mmValue) {
       if (mmn === beta || depth <= 2) {
         mmValue = calcu_temp;
       } else {
-        mmValue = -chess_board_negascout(game, depth + 1, -beta, -calcu_temp);
+        mmValue = -chess_board_negascout(game, depth - 1, -beta, -calcu_temp);
       }
     }
     if (mmValue > alpha) alpha = mmValue;
@@ -293,14 +293,16 @@ function run_negascout(game) {
   let mmindex = -1;
   let valid_move = game.moves()
   for (let ind = 0; ind < valid_move.length; ind++) {
+    if (valid_move[ind].includes('#')) return valid_move[ind];
     game.move(valid_move[ind]);
-    let curValue = -chess_board_negascout(game, 1, -Infinity, Infinity);
-    if (curValue >= mmValue) {
+    let curValue = -chess_board_negascout(game, minimax_alg_searching_limit, -Infinity, Infinity);
+    if (curValue > mmValue) {
       mmValue = curValue;
       mmindex = ind;
     }
     game.undo();
   }
+  console.log("<---------------------------------------->")
   return valid_move[mmindex];
 }
 

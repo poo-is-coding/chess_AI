@@ -1,7 +1,6 @@
 let cc = 0;
 let roundcc = 0;
 let AI_calcu_time = 0;
-
 const turnInnerHTML = `Player's turn<br/><span>click me</span>`;
 const add_option_to_select = (bd_fen) => {
   let state = new Chess(bd_fen);
@@ -37,7 +36,7 @@ function init() {
       $(".btn_nav div").addClass("btn_ck_thinking");
       let AI_choose = document.getElementsByName("sel");
       if (AI_choose[1].checked) {
-        AI_choose = [4, 6];
+        AI_choose = [4, 5];
       } else {
         AI_choose = [5, 4];
       }
@@ -110,6 +109,7 @@ function init() {
     initboard(cc);
     init_AI_selector();
     $("#select_list>#option_item").remove();
+    
     if (game_imfo.AI_player === "white") {
       hhmove = true;
       $("#turn span").text("AI's turn");
@@ -121,9 +121,10 @@ function init() {
       $("#undo_btn span").text("Thinking...");
       $(".btn_nav div").removeClass("btn_ck");
       $(".btn_nav div").addClass("btn_ck_thinking");
+
       let AI_choose = document.getElementsByName("sel");
       if (AI_choose[1].checked) {
-        AI_choose = [4, 6];
+        AI_choose = [4, 5];
       } else {
         AI_choose = [5, 4];
       }
@@ -146,6 +147,7 @@ function init() {
         $("#btn_nav div").removeClass("btn_ck_thinking");
         $("#btn_nav div").addClass("btn_ck");
         $("#undo_btn span").html("Use " + AI_calcu_time + "s<br/>to move");
+        $("#turn span").html(turnInnerHTML);
         hhmove = false;
       }, 20);
     } else {
@@ -155,6 +157,7 @@ function init() {
         "0px 0px 2rem rgba(208,223,230,0.8),0px 0px 2.2rem rgba(208,223,230,0.5)"
       );
       $("#undo_btn span").text("Game Start");
+      $("#turn span").html(turnInnerHTML);
       add_option_to_select(game.fen());
     }
   });
