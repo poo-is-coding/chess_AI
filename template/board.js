@@ -111,10 +111,6 @@ function initboard(num) {
   config.orientation = game_imfo.player;
   board = Chessboard("myBoard", config);
   game.reset();
-  if (game_imfo.AI_player == 'white'){
-    game = new Chess( "8/3k4/7Q/7Q/8/8/4K3/8 w - - 0 1" )
-    board.position(game.fen())
-  }
   whendgame = false
   hhmove = false
   
