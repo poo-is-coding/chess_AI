@@ -111,6 +111,8 @@ function initboard(num) {
   config.orientation = game_imfo.player;
   board = Chessboard("myBoard", config);
   game.reset();
+  game = new Chess("K5k1/5pq1/8/8/8/8/2r3r1/8 w - - 0 1")
+  board.position(game.fen())
   whendgame = false
   hhmove = false
   

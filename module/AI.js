@@ -292,6 +292,7 @@ function run_negascout(game) {
   let mmValue = -Infinity;
   let mmindex = -1;
   let valid_move = game.moves()
+  console.log(valid_move)
   for (let ind = 0; ind < valid_move.length; ind++) {
     if (valid_move[ind].includes('#')) return valid_move[ind];
     game.move(valid_move[ind]);
